@@ -1,0 +1,37 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Home page
+GET     /                           controllers.Application.index()
+POST    /createdevice               controllers.Application.addDevice()
+POST    /sendmessagetouser          controllers.Application.sendMessageToUser()
+POST    /sendmessagetodevice        controllers.Application.sendMessageToDevice()
+
+# Users
+GET     /users                      controllers.UserController.users()
+GET     /users/:id                  controllers.UserController.user(id: Long)
+POST    /users                      controllers.UserController.createUser
+PUT     /users/me                   controllers.UserController.togglePuNo
+PUT     /users/:id                  controllers.UserController.updateUser(id: Long)
+DELETE  /users/:id                  controllers.UserController.deleteUser(id: Long)
+
+# Devices
+GET     /devices                    controllers.DeviceController.devices()
+GET     /devices/:id                controllers.DeviceController.device(id: Long)
+POST    /devices                    controllers.DeviceController.createDevice
+PUT     /devices/:id                controllers.DeviceController.updateDevice(id: Long)
+DELETE  /devices/:id                controllers.DeviceController.deleteDevice(id: Long)
+
+# FcmMessages
+POST    /devices/:id/sendmessage    controllers.FcmMessageController.sendMessageToDevice(id: Long)
+POST    /users/:id/sendmessage      controllers.FcmMessageController.sendMessageToUser(id: Long)
+POST    /fcmmessages                controllers.FcmMessageController.sendMessage()
+
+
+GET     /users/:id/devices          controllers.DeviceController.devicesOfUser(id: Long)
+POST    /users/me/device            controllers.DeviceController.createDevice
+PUT     /users/me/device            controllers.DeviceController.updateMyDevice

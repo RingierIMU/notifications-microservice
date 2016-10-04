@@ -1,0 +1,88 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src='@routes.Assets.versioned("js/index.js")' type='text/javascript'></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+
+            <div class="container">
+                <h2>All devices in the database…</h2>
+                <ul id="devices"></ul>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="container">
+                <h2>All users in the database…</h2>
+                <ul id="users"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <form action="@routes.Application.sendMessageToUser()" method="POST">
+                <h2 class="form-signin-heading">Send a push message to a user…</h2>
+
+                <label for="msgUserId" class="sr-only">User ID</label>
+                <input type="text" name="msgUserId" id="msgUserId" class="form-control" placeholder="User ID" required>
+
+                <label for="msgMessage" class="sr-only">Message</label>
+                <input type="text" name="msgMessage" id="msgMessage" class="form-control" placeholder="Message"
+                       required>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Send message</button>
+            </form>
+        </div>
+        <div class="col-xs-6">
+            <form action="@routes.Application.sendMessageToDevice()" method="POST">
+                <h2 class="form-signin-heading">Send a push message to a device…</h2>
+
+                <label for="msgDeviceId" class="sr-only">User ID</label>
+                <input type="text" name="msgDeviceId" id="msgDeviceId" class="form-control" placeholder="Device ID"
+                       required>
+
+                <label for="msgMessage2" class="sr-only">Message</label>
+                <input type="text" name="msgMessage" id="msgMessage2" class="form-control" placeholder="Message"
+                       required>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Send message</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form action="@routes.Application.addDevice()" method="POST">
+        <h2 class="form-signin-heading">Please add device details…</h2>
+
+        <label for="inputId" class="sr-only">Email address</label>
+        <input type="text" id="inputId" class="form-control" placeholder="Device ID" required autofocus>
+
+        <label for="inputUserid" class="sr-only">Email address</label>
+        <input type="text" id="inputUserid" name="user_id" class="form-control" placeholder="User ID" required>
+
+        <label for="inputOs" class="sr-only">OS</label>
+        <input type="text" id="inputOs" name="operating_system" class="form-control" placeholder="Operating system"
+               required>
+
+        <label for="inputOsVersion" class="sr-only">Email address</label>
+        <input type="text" id="inputOsversion" name="operating_system_version" class="form-control"
+               placeholder="OS Version" required>
+
+        <label for="inputManuf" class="sr-only">Email address</label>
+        <input type="text" id="inputManuf" name="manufacturer" class="form-control" placeholder="Manufacturer" required>
+
+        <label for="inputModel" class="sr-only">Email address</label>
+        <input type="text" id="inputModel" name="model" class="form-control" placeholder="Model" required>
+
+        <label for="inputInstanceId" class="sr-only">Instance ID</label>
+        <input type="text" id="inputInstanceId" name="instance_id" class="form-control" placeholder="Instance ID"
+               required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Add device</button>
+    </form>
+</div>
