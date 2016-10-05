@@ -3,7 +3,7 @@
 
 # --- !Ups
 
-create table fcm_device (
+create table device (
   id                            bigint not null,
   user_id                       bigint,
   operating_system              varchar(255),
@@ -11,13 +11,23 @@ create table fcm_device (
   manufacturer                  varchar(255),
   model                         varchar(255),
   instance_id                   varchar(255),
-  constraint pk_fcm_device primary key (id)
+  constraint pk_device primary key (id)
 );
-create sequence fcm_device_seq;
+create sequence device_seq;
+
+create table user (
+  id                            bigint not null,
+  receive_push_notifications    boolean,
+  constraint pk_user primary key (id)
+);
+create sequence user_seq;
 
 
 # --- !Downs
 
-drop table if exists fcm_device;
-drop sequence if exists fcm_device_seq;
+drop table if exists device;
+drop sequence if exists device_seq;
+
+drop table if exists user;
+drop sequence if exists user_seq;
 

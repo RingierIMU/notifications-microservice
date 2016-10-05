@@ -2,7 +2,7 @@ import play.ebean.sbt.PlayEbean
 
 name := """microservice-notifications"""
 
-version := "0.0.1"
+version := "0.0.2"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
 

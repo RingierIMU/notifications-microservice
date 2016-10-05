@@ -7,4 +7,6 @@ deploy:
   provider: releases
   api_key: ${GITHUB_TOKEN}
   skip_cleanup: true
-  file: target/universal/microservice-notifications-0.0.1.tgz
+  file: target/universal/microservice-notifications-${TRAVIS_TAG}.tgz
+  on:
+    tags: true
