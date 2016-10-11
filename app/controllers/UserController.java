@@ -4,6 +4,7 @@ import models.User;
 import play.libs.Json;
 import play.mvc.*;
 import repositories.UserRepository;
+import utils.Util;
 
 import javax.persistence.PersistenceException;
 import java.util.ArrayList;
@@ -113,7 +114,7 @@ public class UserController extends Controller {
                 userRepository.togglePuNo(user, puno_flag);
                 return ok(Json.toJson(user));
             } else {
-                return ok(Json.toJson(new User(0l, false)));
+                return ok(Json.toJson(new User(Util.getUniqueId(), false)));
             }
         } catch (PersistenceException persistenceException) {
             return internalServerError("Error deleting device: " + persistenceException.getMessage());

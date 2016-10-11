@@ -16,11 +16,10 @@ create table device (
 create sequence device_seq;
 
 create table user (
-  id                            bigint not null,
+  id                            varchar(255) not null,
   receive_push_notifications    boolean,
   constraint pk_user primary key (id)
 );
-create sequence user_seq;
 
 
 # --- !Downs
@@ -29,5 +28,4 @@ drop table if exists device;
 drop sequence if exists device_seq;
 
 drop table if exists user;
-drop sequence if exists user_seq;
 

@@ -11,19 +11,19 @@ public class User extends Model implements Serializable {
     public static Finder<Long, User> find = new Finder<Long, User>(User.class);
 
     @Id
-    private Long id;
+    private String id;
     private boolean receive_push_notifications;
 
-    public User(Long id, boolean receive_push_notifications) {
+    public User(String id, boolean receive_push_notifications) {
         this.id = id;
         this.receive_push_notifications = receive_push_notifications;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

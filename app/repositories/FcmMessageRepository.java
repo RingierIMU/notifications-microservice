@@ -13,7 +13,7 @@ public class FcmMessageRepository {
     private FcmSender fcmSender = new FcmSender();
     private DeviceRepository deviceRepository = new DeviceRepository();
 
-    public void sendGcmMessageToUser(String user_id, String message) throws FcmMessageNotSentException {
+    public void sendFcmMessageToUser(String user_id, String message) throws FcmMessageNotSentException {
         Integer successfulMessagesSent = 0;
 
         List<Device> deviceList = Device.find.where().eq("user_id", user_id).findList();
