@@ -98,11 +98,11 @@ public class MessageHandler {
     }
 
     public void handleDeliveryReceipt(Map<String, Object> jsonMap) {
-        // TODO: handle the delivery receipt
+        // TODO
     }
 
     public void handleControlMessage(Map<String, Object> jsonMap) {
-        // TODO: handle the control message
+        // TODO
         String controlType = (String) jsonMap.get("control_type");
 
         if (controlType.equals("CONNECTION_DRAINING")) {
@@ -111,7 +111,7 @@ public class MessageHandler {
     }
 
     public void handleServerFailure(Map<String, Object> jsonMap) {
-        // TODO: Resend message
+        // TODO
     }
 
     public void handleUnrecoverableFailure(Map<String, Object> jsonMap) {

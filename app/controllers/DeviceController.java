@@ -4,7 +4,6 @@ import models.Device;
 import models.User;
 import play.libs.Json;
 import play.mvc.*;
-import utils.Util;
 
 import javax.persistence.PersistenceException;
 import java.util.ArrayList;
@@ -45,10 +44,10 @@ public class DeviceController extends Controller {
         device = Json.fromJson(body.asJson(), Device.class);
         try {
             if (device.getUser_id() == 0 || device.getUser_id() == null) {
-                User user = new User(Util.getUniqueId(), true);
+                User user = new User(0l, true);
                 user.save();
                 user.refresh();
-                device.setUser_id(Long.parseLong(user.getId()));
+                device.setUser_id(user.getId());
             }
             device.save();
             return ok(Json.toJson(device));
@@ -98,10 +97,10 @@ public class DeviceController extends Controller {
             } else {
                 try {
                     if (deviceFromRequest.getUser_id() == 0 || deviceFromRequest.getUser_id() == null) {
-                        User user = new User(Util.getUniqueId(), true);
+                        User user = new User(0l, true);
                         user.save();
                         user.refresh();
-                        deviceFromRequest.setUser_id(Long.parseLong(user.getId()));
+                        deviceFromRequest.setUser_id(user.getId());
                     }
                     deviceFromRequest.save();
                     return ok(Json.toJson(deviceFromRequest));
