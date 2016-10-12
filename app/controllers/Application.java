@@ -58,7 +58,7 @@ public class Application extends Controller {
             user_id = requestData.get("msgUserId");
             message = requestData.get("msgMessage");
 
-            fcmMessageRepository.sendGcmMessageToUser(user_id, message);
+            fcmMessageRepository.sendFcmMessageToUser(user_id, message);
             return ok("All messages sent successfully.");
         } catch (FcmMessageNotSentException gmnse) {
             return internalServerError(gmnse.getMessage());

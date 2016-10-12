@@ -34,7 +34,7 @@ public class FcmMessageController extends Controller {
             Http.RequestBody body = request().body();
             message = body.asJson().toString();
 
-            fcmMessageRepository.sendGcmMessageToUser(String.valueOf(user_id), message);
+            fcmMessageRepository.sendFcmMessageToUser(String.valueOf(user_id), message);
             return ok("All messages sent successfully.");
         } catch (FcmMessageNotSentException gmnse) {
             return internalServerError(gmnse.getMessage());
