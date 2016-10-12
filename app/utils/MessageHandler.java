@@ -1,9 +1,11 @@
 package utils;
 
+import models.Blob;
 import models.UpstreamMessage;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.packet.Stanza;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
+import repositories.BlobRepository;
 import xmpp.GcmPacketExtension;
 import xmpp.MessageHelper;
 
@@ -12,18 +14,35 @@ import java.util.Map;
 public class MessageHandler {
 
     private XMPPTCPConnection mConnection;
+    private BlobRepository mBlobRepository = new BlobRepository();
 
     public MessageHandler(XMPPTCPConnection xmpptcpConnection) {
         this.mConnection = xmpptcpConnection;
     }
 
     public void handleUpstreamMessage(UpstreamMessage message) {
-        final String action = message.getDataPayload().get("ACTION");
-        final String msg = message.getDataPayload().get("MESSAGE");
+        final String type = message.getDataPayload().get("type");
+        final String payload = message.getDataPayload().get("payload");
 
         sendDownstreamMessage(MessageHelper.createJsonAck(message.getFrom(), message.getMessageId()));
 
-        System.out.println("Received: " + action + " with message: " + msg);
+        switch (type) {
+            case "SAVE_IN_DATABASE":
+                saveJsonBlobToDatabase(payload);
+                break;
+            case "FORWARD_TO_REST_SERVICE":
+                RESTSender restSender = new RESTSender();
+                restSender.sendMessage(message.getDataPayload().get("rest_endpoint"),
+                        message.getDataPayload().get("rest_credentials"),
+                        payload);
+                break;
+            default:
+        }
+    }
+
+
+    private void saveJsonBlobToDatabase(String payload) {
+        mBlobRepository.saveBlobToDatabase(new Blob(0l, null, payload));
     }
 
     public void handleAckReceipt(Map<String, Object> jsonMap) {

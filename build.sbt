@@ -17,5 +17,6 @@ libraryDependencies ++= Seq(
   "org.igniterealtime.smack" % "smack-resolver-javax" % "4.1.8",
   "org.igniterealtime.smack" % "smack-java7" % "4.1.8",
   "org.igniterealtime.smack" % "smack-im" % "4.1.8",
-  "org.igniterealtime.smack" % "smack-extensions" % "4.1.8"
+  "org.igniterealtime.smack" % "smack-extensions" % "4.1.8",
+  "com.squareup.retrofit2" % "retrofit" % "2.1.0"
 )

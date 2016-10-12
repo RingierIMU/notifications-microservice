@@ -1,6 +1,5 @@
 package xmpp;
 
-import models.UpstreamMessage;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.StanzaListener;
@@ -101,8 +100,7 @@ public class CloudConnection implements StanzaListener {
         Object messageType = jsonMap.get("message_type");
 
         if (messageType == null) {
-            UpstreamMessage upstreamMessage = MessageHelper.createUpstreamMessage(jsonMap);
-            mMessageHandler.handleUpstreamMessage(upstreamMessage);
+            mMessageHandler.handleUpstreamMessage(MessageHelper.createUpstreamMessage(jsonMap));
         } else {
             switch (messageType.toString()) {
                 case "ack":

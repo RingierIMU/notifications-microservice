@@ -26,6 +26,12 @@ POST    /devices                    controllers.DeviceController.createDevice
 PUT     /devices/:id                controllers.DeviceController.updateDevice(id: Long)
 DELETE  /devices/:id                controllers.DeviceController.deleteDevice(id: Long)
 
+# Blobs
+GET     /blobs                    controllers.BlobController.blobs()
+GET     /blobs/:id                controllers.BlobController.blob(id: Long)
+DELETE  /blobs/:id                controllers.BlobController.deleteBlob(id: Long)
+GET     /users/:id/blobs          controllers.BlobController.blobsOfUser(id: Long)
+
 # FcmMessages
 POST    /devices/:id/sendmessage    controllers.FcmMessageController.sendMessageToDevice(id: Long)
 POST    /users/:id/sendmessage      controllers.FcmMessageController.sendMessageToUser(id: Long)

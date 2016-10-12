@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table blob (
+  id                            bigint not null,
+  user_id                       bigint,
+  data                          varchar(255),
+  constraint pk_blob primary key (id)
+);
+create sequence blob_seq;
+
 create table device (
   id                            bigint not null,
   user_id                       bigint,
@@ -23,6 +31,9 @@ create table user (
 
 
 # --- !Downs
+
+drop table if exists blob;
+drop sequence if exists blob_seq;
 
 drop table if exists device;
 drop sequence if exists device_seq;
